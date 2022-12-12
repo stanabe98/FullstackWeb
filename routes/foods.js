@@ -2,8 +2,6 @@ const express = require('express')
 const router = express.Router()
 const Food= require('../models/foodsubmission')
 
-
-
 // All authors route
 router.get('/', async (req,res) => {
     let searchOption= {}
@@ -11,7 +9,7 @@ router.get('/', async (req,res) => {
         searchOption.name= new RegExp(req.query.name, 'i')
     }
     try{
-        const foodSaved= await Food.find({})
+        const foodSaved= await Food.find(searchOption)
         res.render('foods/index', {
         foodSaved: foodSaved, 
         searchOption: req.query})
@@ -21,23 +19,20 @@ router.get('/', async (req,res) => {
     
 })
 
-
-
-
 router.get('/new', async(req,res) => {
     res.render('foods/new', {food: new Food()})
 })
-
-
 
 // create author route
 router.post('/', async (req,res) => {
     const food= new Food({
         name:req.body.name,
-        calories:req.body.calories
+        calories:req.body.calories,
+        protein: req.body.protein,
+        carbs: req.body.carbs,
+        fats: req.body.fats,
+        quantity: req.body.quantity
     })
-    
-
     try{
         const newFood= await food.save()
         res.redirect('foods')
@@ -45,11 +40,9 @@ router.post('/', async (req,res) => {
     catch{
         res.render('foods/new', {
             food: food,
-            errorMessage: 'Error creating Author'
+            errorMessage: 'Error creating Food log'
         })
     }
- 
-    
 })
 
 

@@ -1,0 +1,20 @@
+<h2>Search saved days of tracking</h2> 
+<form action = "/track" method="GET">
+<div>
+    <label>Date</label>
+    <input type="date" name="dateCreatedA" value="<%= searchOption.createdAfter %>">
+</div>
+
+<div>
+    <label>Date before</label>
+    <input type="date" name="dateCreatedB" value="<%= searchOption.createdBefore %>">
+</div>
+    <button type="submit">Search</button>
+</form> 
+<div>
+    <% track.forEach(tracks =>{ %>
+
+        <div>  <%=  tracks.calories %>  calories <%=  tracks.protein %>g protein   </div>
+        
+    <%    }) %> 
+</div>

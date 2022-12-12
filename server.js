@@ -8,10 +8,12 @@ const expressLayouts = require('express-ejs-layouts');
 const bodyParser = require('body-parser')
 
 const indexRouter= require('./routes/index')
-const authorRouter= require('./routes/foods')
+const foodsRouter= require('./routes/foods')
+const trackRouter= require('./routes/track')
+
 
 app.set('view engine', 'ejs')
-app.set('views', __dirname + '/views')
+app.set('views', __dirname + '/views') //current directory name
 app.set('layout', 'layouts/layout' )
 
 app.use(expressLayouts)
@@ -30,7 +32,8 @@ db.once('open', ()=> console.log('Connected to Mongoose'))
 
 
 app.use('/', indexRouter)
-app.use('/foods', authorRouter)
+app.use('/foods', foodsRouter)
+app.use('/track', trackRouter)
 
 
 

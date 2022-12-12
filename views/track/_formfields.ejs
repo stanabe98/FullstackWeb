@@ -1,0 +1,112 @@
+
+
+<script> 
+
+    async function populate(){
+        var selectBox = document.getElementById("foodSaved");
+        var selected= document.querySelector('#foodSaved')
+        var output = selected.options[selected.selectedIndex].label
+        var selectedValue = selectBox.options[selectBox.selectedIndex].label;
+        console.log(output)
+        
+}
+
+    function dateformatted(){
+
+        var selected = document.getElementById("createdAt").value;
+        
+        console.log(selected) 
+    }
+
+    function fetchData(){
+        const url= "https://reactnative.dev/movies.json"
+        fetch(url, {method : 'GET'})
+            .then((res) =>res.json())
+            .then((data)=> console.log(data.movies[0]))
+            .catch((error)=> console.log(error))
+    }
+
+    
+
+</script>
+
+    
+
+
+<div>
+    <label>Calories</label>
+    <input type="number" id="cal" name="calories" value="<%= track.calories %> ">
+</div> 
+<label>Food</label>
+<select name = "food" onchange=fetchData() id="foodSaved">  
+    
+    <% foodSaved.forEach(food => { %>
+       
+        
+        <% if (food.id == track.food) {%> 
+        <option selected label="<%= food.name  %>" value="<%= food.id %> " >
+        
+    
+        <% }else {%>
+        <option  label="<%= food.name  %>" value="<%= food.id %> " >
+        
+           
+       
+
+        <% } %> 
+    <% }) %> 
+    
+</select>
+
+<body>
+    
+    
+</body>
+
+
+<script type="text/javascript">
+    console.log('hello')
+</script>
+
+<div>
+    <label>Protein</label>
+    <input type="number" id="protein" name="protein" value="<%= track.protein %> ">
+
+</div> 
+
+<div>
+    <label>Something</label>
+    <input type="text" id="Something" name="Something" value="<%= something %> ">
+</div> 
+
+<div>
+    <label>Carbs</label>
+    <input type="number" id="carbs" name="carbs" value="<%= track.carbs %> ">
+</div> 
+
+<div>
+    <label>Fats</label>
+    <input type="number" id="fats" name="fats" value="<%= track.fats %> ">
+</div> 
+<div>
+    <label>Quantity</label>
+    <input type="number" id="quantity" name="quantity" value="<%= track.quantity %> ">
+</div> 
+
+<body>
+    <!--The container where I'll add the dynamic ul and li elements.-->
+    <div id='container'></div>
+</body>
+
+
+
+<div>
+    <label>createdAt</label>
+    <input type="date"  name="createdAt" id="createdAt" onchange=dateformatted()
+     value="<%= track.createdAt==null ? '' : 
+     track.createdAt.toISOString().split('T')[0] %> ">
+</div> 
+
+
+
+

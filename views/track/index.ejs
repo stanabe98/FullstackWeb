@@ -1,20 +1,64 @@
-<h2>Search saved days of tracking</h2> 
+<h2 class="page-header" >Search saved days of tracking</h2> 
 <form action = "/track" method="GET">
-<div>
-    <label>Date</label>
-    <input type="date" name="dateCreatedA" value="<%= searchOption.createdAfter %>">
+<div >
+    <span class="span">Date</span>
+    <input class="input-field" type="date" name="dateCreatedA" value="<%= searchOption.createdAfter %>">
+</div>
+<div style="margin-bottom: 0.5rem;">
+
 </div>
 
 <div>
-    <label>Date before</label>
-    <input type="date" name="dateCreatedB" value="<%= searchOption.createdBefore %>">
+    <span class="span">Date before</span>
+    <input class="input-field" type="date" name="dateCreatedB" value="<%= searchOption.createdBefore %>">
 </div>
-    <button type="submit">Search</button>
+    <button class="btn-search" type="submit">Search</button>
 </form> 
-<div>
-    <% track.forEach(tracks =>{ %>
 
-        <div>  <%=  tracks.calories %>  calories <%=  tracks.protein %>g protein   </div>
-        
-    <%    }) %> 
+<div class="form-row">
+    <div class="form-item">
+        <label>Food</label>
+    </div>
+    <div class="form-item">
+        <label>Calories</label>
+    </div>
 </div>
+<br>
+<div >
+    <% track.forEach(tracks =>{ %>
+        <div class="btn-row">
+        <div class="form-row">
+            <div class="form-item">
+                <label style="margin-top: 0.5rem;"><%= tracks.food %> </label>
+            </div>
+            <div class="form-item">
+                <label  style="margin-top: 0.5rem;" name="eachfood"><%= tracks.calories %></label>
+            </div>
+        </div>
+            
+        <a  class="btn btn-primary" href="/track/<%= tracks.id %>/edit" >Edit</a>
+        <%- include('../partials/deleteForm', 
+            {url: `/track/${tracks.id}` }) %> 
+
+        
+        </div>
+        <div style="margin-bottom: 0.3rem;">
+        </div>
+        
+    <%  }) %> 
+</div>
+
+<h3 class="center-align">Total calories: <span id="total-calories"></span></h3>
+
+<script type="text/javascript">
+    
+    var arr = document.getElementsByName('eachfood');
+    var total=0
+
+    for (var i=0; i<arr.length;i++){
+        var intval= parseInt(arr[i].innerText)
+        total= total + intval;
+    }
+
+    document.getElementById('total-calories').innerText = total;
+</script>

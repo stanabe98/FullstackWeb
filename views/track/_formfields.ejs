@@ -2,29 +2,75 @@
 
 <script> 
 
-    async function populate(){
-        var selectBox = document.getElementById("foodSaved");
-        var selected= document.querySelector('#foodSaved')
-        var output = selected.options[selected.selectedIndex].label
-        var selectedValue = selectBox.options[selectBox.selectedIndex].label;
-        console.log(output)
-        
-}
+   
 
-    function dateformatted(){
+    
 
-        var selected = document.getElementById("createdAt").value;
-        
-        console.log(selected) 
+    async function apiFetch(){
+        const url= "http://localhost:3000/api"
+        try{
+            const response = await fetch(url);
+            const data= await response.json();
+            var selected= document.querySelector('#food')
+            var output = selected.options[selected.selectedIndex].label
+            var macros= getMacros(data, output)
+            document.getElementById("cal").value=macros.calories
+            document.getElementById("protein").value= macros.protein
+            document.getElementById("carbs").value= macros.carbs
+            document.getElementById("fats").value= macros.fats
+            document.getElementById("quantity").value= macros.quantity
+        }
+        catch (error){
+            console.log(error)
+        }
     }
 
-    function fetchData(){
-        const url= "https://reactnative.dev/movies.json"
-        fetch(url, {method : 'GET'})
-            .then((res) =>res.json())
-            .then((data)=> console.log(data.movies[0]))
-            .catch((error)=> console.log(error))
+    function getMacros(data,expected ){
+        for(var i=0; i<data.length; i++){
+           if(data[i].name == expected){
+                const calories= data[i].calories
+                const protein = data[i].protein
+                const fats = data[i].fats
+                const carbs = data[i].carbs
+                const quantity = data[i].quantity
+                return {calories,protein, fats, carbs, quantity}
+           }
+        }
     }
+
+    function roundNum(component){
+        component.value = Math.round(component.value)
+
+    }
+
+
+    async function adjust(){
+        const url= "http://localhost:3000/api"
+        try{
+            
+            const response = await fetch(url);
+            const data= await response.json();
+            var selected= document.querySelector('#food')
+            var output = selected.options[selected.selectedIndex].label
+            var macros= getMacros(data, output)
+            var currentVal= document.getElementById("quantity").value
+            var ratio= currentVal/macros.quantity
+
+
+            document.getElementById("cal").value=Math.round(document.getElementById("cal").value*ratio)
+            document.getElementById("protein").value=  Math.round(document.getElementById("protein").value*ratio)
+            document.getElementById("carbs").value=  Math.round(document.getElementById("carbs").value*ratio)
+            document.getElementById("fats").value=  Math.round(document.getElementById("fats").value*ratio)
+
+            
+
+        }   
+        catch (error){
+            console.log(error)
+        }
+    }
+    
+   
 
     
 
@@ -32,79 +78,59 @@
 
     
 
+
+
+<div>
+<label>Food</label>
+
+<select class="select-field" name="food" id="food" onchange="apiFetch()">
+    <% foodSaved.forEach(food => { %>
+      <% if (food.id === track.food) { %>
+        <option selected label="<%= food.name %>" value="<%= food.name %>">
+      <% } else { %>
+        <option label="<%= food.name %>" value="<%= food.name %>">
+      <% } %>
+    <% }) %>
+</select>
+
+
+    <label>Quantity</label>
+    <input class="input-field" onchange="adjust()" type="number" id="quantity" name="quantity" value="<%= track.quantity %>">
+</div> 
 
 <div>
     <label>Calories</label>
-    <input type="number" id="cal" name="calories" value="<%= track.calories %> ">
+    <input class="input-field" type="number" id="cal" name="calories" value="<%= track.calories %>">
 </div> 
-<label>Food</label>
-<select name = "food" onchange=fetchData() id="foodSaved">  
-    
-    <% foodSaved.forEach(food => { %>
-       
-        
-        <% if (food.id == track.food) {%> 
-        <option selected label="<%= food.name  %>" value="<%= food.id %> " >
-        
-    
-        <% }else {%>
-        <option  label="<%= food.name  %>" value="<%= food.id %> " >
-        
-           
-       
-
-        <% } %> 
-    <% }) %> 
-    
-</select>
-
-<body>
-    
-    
-</body>
 
 
-<script type="text/javascript">
-    console.log('hello')
-</script>
+
 
 <div>
     <label>Protein</label>
-    <input type="number" id="protein" name="protein" value="<%= track.protein %> ">
+    <input class="input-field" onchange="roundNum(this)" type="number" id="protein" name="protein"  value="<%= track.protein %>">
 
 </div> 
 
-<div>
-    <label>Something</label>
-    <input type="text" id="Something" name="Something" value="<%= something %> ">
-</div> 
+
 
 <div>
     <label>Carbs</label>
-    <input type="number" id="carbs" name="carbs" value="<%= track.carbs %> ">
+    <input class="input-field" onchange="roundNum(this)" type="number" id="carbs" name="carbs" value="<%= track.carbs %>">
 </div> 
 
 <div>
     <label>Fats</label>
-    <input type="number" id="fats" name="fats" value="<%= track.fats %> ">
+    <input class="input-field" onchange="roundNum(this)" type="number" id="fats" name="fats" value="<%= track.fats %>">
 </div> 
-<div>
-    <label>Quantity</label>
-    <input type="number" id="quantity" name="quantity" value="<%= track.quantity %> ">
-</div> 
-
-<body>
-    <!--The container where I'll add the dynamic ul and li elements.-->
-    <div id='container'></div>
-</body>
 
 
 
 <div>
     <label>createdAt</label>
-    <input type="date"  name="createdAt" id="createdAt" onchange=dateformatted()
+    <input class="input-field" type="date"  name="createdAt" id="createdAt" 
      value="<%= track.createdAt==null ? '' : 
-     track.createdAt.toISOString().split('T')[0] %> ">
+     track.createdAt.toISOString().split('T')[0] %>">
 </div> 
 
 

@@ -1,0 +1,9 @@
+<h2 class="page-header" >Edit Food</h2> 
+<form action = "/foods/<%= food.id %>?_method=PUT" method="POST"> 
+    <!-- the put leads to update page defined in the routes-->
+    <%- include('_formfields') %>
+    <br>
+    <a class="btn2 btn-cancel" href="/foods/<%= food.id %> ">Cancel</a>
+    
+    <button class="btn2 btn-update" type="submit">Update</button>
+</form>

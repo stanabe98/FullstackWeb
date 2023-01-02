@@ -28,12 +28,17 @@ const trackSchema= new mongoose.Schema({
     },
 
     food:{
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.Mixed,
         ref: 'Food'
     }, 
     quantity:{
         type: Number,
     }, 
+
+    notes:{
+        type: String,
+    }
+
   
    
 })

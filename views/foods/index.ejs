@@ -1,13 +1,32 @@
-<h2>Search saved foods</h2> 
+<h2 class="page-header">Search saved foods</h2> 
 <form action = "/foods" method="GET">
-    <label>Name</label>
-    <input type="text" name="name" value="<%= searchOption.name %>">
-    <button type="submit">Search</button>
+    <label >Name</label>
+    <input class="input-field" type="text" name="name" value="<%= searchOption.name %>">
+    <button class="btn-search" type="submit">Search</button>
 </form> 
 <br>
 <% foodSaved.forEach(food =>{ %>
 
-    <div><%= food.name %>  <%= food.calories %> </div>
+    <div class="food-info"> 
+    <div>Name: <%= food.name   %>   </div>
+    <div>Calories: <%=food.calories %> </div>
+
+    </div>
+    <div class="btn-row" style="width: 15rem; justify-content: center; background-color: slategray;">
+
+    
+    <a class="btn btn-primary" href="/foods/<%= food.id %>/edit">Edit</a>
+    <%- include('../partials/deleteForm', 
+            {url: `/foods/${food.id}` }) %> 
+            <!-- / normal javascript used inside server-->
+  
+
+    </div>
+    <div style="margin-bottom: 0.5rem;">
+
+    </div>
+   
 
 <%    }) %> 
+
 

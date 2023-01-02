@@ -1,0 +1,82 @@
+@import 'shared/fonts.css';
+@import 'shared/variables.css';
+@import 'shared/header.css';
+@import 'shared/buttons.css';
+@import 'shared/track.css';
+
+:root {
+    font-family: 'Gotham Rounded' ;
+    font-size: 20px;
+    color: var(--color-text-light);
+}
+
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(to right, var(--color-background-dark)
+    , var(--color-background-light ));
+}
+
+.container {
+    max-width: 1200px ;
+    margin: auto ;
+    margin-bottom: 3rem;
+}
+
+.inner-container {
+    max-width: 1000px ;
+    margin: 0 2rem;
+
+}
+
+.page-header {
+    font-size: 2rem;
+    font-size: 500;
+}
+
+.food-info {
+    display: flex ;
+    flex-direction: row;
+}
+
+.food-info >* {
+    margin-left: 1rem;
+}
+
+.food-info >*:first-child {
+    margin-left: 0;
+}
+
+.Food-Calorie {
+    display: flex;
+    justify-content: space-around;
+    width: 250px;  /* determines width you want to space around*/
+    
+}
+
+.Food-Calorie >* {
+    font-size: 23px;
+}
+
+.input-field, .select-field {
+    background-color: rgb(12, 55, 63);
+    border-radius: 0.25rem;
+  
+    border: 1px solid black;
+    height: 1.5rem;
+    padding: 0.25rem, 0.5rem;
+    color: white;
+    font-size: 0.8rem;
+    font-family: 'Gotham Rounded';
+    outline: none;
+
+}
+
+.span {
+    display: inline-block;
+    text-align: left;
+    width: 90px ;
+}

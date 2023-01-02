@@ -1,0 +1,121 @@
+:root {
+    --color-btn-primary-background: rgb(47, 106, 124);
+    --color-btn-update-background: rgb(40, 119, 197);
+    --color-btn-cancel-background: rgb(168, 59, 86);
+
+    --color-btn-primary-text:  rgb(2, 19, 44) ;
+    --color-btn-border: black;
+    --color-btn-danger-background: rgb(138, 66, 88);
+    --color-btn-primary-background-hover:  rgb(18, 47, 56);
+    --color-btn-danger-background-hover: rgb(82, 40, 53);
+    --color-btn-primary-text-hover:  rgb(221, 226, 235) ;
+
+
+}
+
+
+.btn {
+    border: 1px var(--color-btn-border) ;
+    border-radius: .5rem;
+    padding: .5rem 1rem;
+    font-size: 1.2rem;
+    font-family: 'Gotham Rounded';
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn2 {
+    border: 1px var(--color-btn-border) ;
+    border-radius: .5rem;
+    padding: .5rem 1rem;
+    font-size: 0.8rem;
+    font-family: 'Gotham Rounded';
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+}
+
+
+.btn-search {
+    border: 1px var(--color-btn-border) ;
+    border-radius: .5rem;
+    padding: .5rem 1rem;
+    font-size: 0.5rem;
+    font-family: 'Gotham Rounded';
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    color: var(--color-btn-primary-text);
+    background-color: var(--color-btn-primary-background);
+}
+
+.btn-primary {
+    color: var(--color-btn-primary-text);
+    background-color: var(--color-btn-primary-background);
+
+}
+
+.btn-primary:hover {
+    color: var(--color-btn-primary-text-hover);
+    background-color: var(--color-btn-primary-background-hover);
+
+}
+
+
+
+
+.btn-danger {
+    color: var(--color-btn-primary-text);
+    background-color: var(--color-btn-danger-background);
+
+}
+
+
+.btn-danger:hover {
+    color: var(--color-btn-primary-text-hover);
+    background-color: var(--color-btn-danger-background-hover);
+
+}
+
+
+
+.btn-update {
+    color: var(--color-btn-primary-text);
+    background-color: var(--color-btn-update-background);
+
+}
+
+
+.btn-cancel {
+    color: var(--color-btn-primary-text);
+    background-color: var(--color-btn-cancel-background);
+}
+
+.btn-row {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    background-color: azure;
+    border-radius: .5rem;
+    width: 40rem;
+    
+   
+   
+}
+
+/* this means every child of the btn-row  */
+.btn-row > * {
+    margin-left: 1rem;
+}  
+
+/* removes the margin spacing for the first child */
+.btn-row > *:first-child {
+    margin-left: 0;
+}  
+
+
+
+
+
+/* when passing into html btn followed by btn primary passed */

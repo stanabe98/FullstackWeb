@@ -1,17 +1,35 @@
-<label>Name</label>
-<input type="text" name="name" value="<%= food.name %>">
+<div style="display: flex; margin-top: 0px" >
+    
+    <label style="display: block; margin: 10px 0;">
+            <span class="span" >Name  </span>
+            <input class='input-field'  type="text" name="name" value="<%= food.name %>">
+       
+    </label>
+    <div style="margin-right: 1rem;"></div>
+    <label style="display: block; margin: 10px 0;">
+            <span class="span"> quantity</span>
+            <input class='input-field' type="number" name="quantity" value="<%= food.quantity %>">
+     
+    </label>
 
-<label>per quantity</label>
-<input type="number" name="quantity" value="<%= food.quantity %>">
-<br>
-<label>Calories</label>
-<input type="number" name="calories" value="<%= food.calories %>">
-<br>
-<label>Protein </label>
-<input type="number" name="protein" value="<%= food.protein %>">
-<br>
-<label>Carbs </label>
-<input type="number" name="carbs" value="<%= food.carbs %>">
-<br>
-<label>Fats </label>
-<input type="number" name="fats" value="<%= food.fats %>">
+</div>
+
+<label style="display: block; ">
+    <span class="span">Calories</span>
+    <input class='input-field' type="number" name="calories" value="<%= food.calories %>">
+</label>
+
+<label style="display: block; margin: 10px 0;">
+    <span class="span">Protein </span>
+    <input  class='input-field' type="number" name="protein" value="<%= food.protein %>">
+</label>
+
+<label style="display: block; margin: 10px 0;">
+    <span class="span">Carbs </span>
+    <input class='input-field' type="number" name="carbs" value="<%= food.carbs %>">
+</label>
+
+<label style="display: block; margin: 10px 0;">
+    <span class="span">Fats </span>
+    <input class='input-field' type="number" name="fats" value="<%= food.fats %>">
+</label>
